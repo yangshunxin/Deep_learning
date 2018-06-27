@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # tenforflow 实现线性回归
 
 # 随机生成1000个点，围绕在y=0.1x+0.3的直线范围
-num_points = 1000
+num_points = 100
 vectors_set = []
 for i in range(num_points):
     x1 = np.random.normal(0.0, 0.55) # 生成一个均值为0，方差为0.55的高斯分布
@@ -25,30 +25,31 @@ plt.scatter(x_data, y_data, c='r')
 plt.show()
 
 # 生成1维的w矩阵，取值是[-1, 1]之间的随机数
+# random_uniform 均匀分布的随机数，shape=[1], minval=-1.0, maxval=1.0
 W = tf.Variable(tf.random_uniform([1], -1.0, 1.0), name='W')
 # 生成1维的b矩阵，初始值是0
 b = tf.Variable(tf.zeros([1]), name='b')
-# 经过计算得出预估值y
+# 经过计算得出预估值y ---每次都用100 个样本来训练
 y = W * x_data + b
 
 # 以预估值y和实际值y_data之间的均方差作为损失
 loss = tf.reduce_mean(tf.square(y-y_data), name='loss')
 # 采用梯度下降法来优化参数
-optimizer = tf.train.GradientDescentOptimizer(0.5)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.05)
 # 训练的过程就是最小化这个误差值
 train = optimizer.minimize(loss, name='train')
 
-sess = tf.Session()
-# 全局变量 初始化
-init = tf.global_variables_initializer()
-sess.run(init)
+with tf.Session() as sess:
+    # 全局变量 初始化
+    init = tf.global_variables_initializer()
+    sess.run(init)
 
-# 初始化的w和b是多少
-print('W==', sess.run(W), 'b=', sess.run(b), 'loss=', sess.run(loss))
-
-# 执行20次训练
-for step in range(20):
-    sess.run(train)
-    # 输出训练后的w和b
+    # 初始化的w和b是多少
     print('W==', sess.run(W), 'b=', sess.run(b), 'loss=', sess.run(loss))
+
+    # 执行20次训练---这时批量梯度下降，每次都给了N个样本
+    for step in range(200):
+        sess.run(train)
+        # 输出训练后的w和b
+        print('W==', sess.run(W), 'b=', sess.run(b), 'loss=', sess.run(loss))
 
