@@ -109,3 +109,7 @@ venv.bak/
 # tensorflow_base_program
 tensorflow_base_program/tmp/
 tensorflow_base_program/data/
+
+# BP
+BP/data
+BP/mn
