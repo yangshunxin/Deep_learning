@@ -113,3 +113,6 @@ tensorflow_base_program/data/
 # BP
 BP/data
 BP/mn
+
+#CNN
+CNN/model

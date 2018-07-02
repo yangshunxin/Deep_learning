@@ -8,6 +8,8 @@ trainimg   = mnist.train.images
 trainlabel = mnist.train.labels
 testimg    = mnist.test.images
 testlabel  = mnist.test.labels
+
+print(trainimg.shape)
 print ("MNIST ready")
 
 # 28*28图片
