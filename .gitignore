@@ -116,3 +116,6 @@ BP/mn
 
 #CNN
 CNN/model
+
+# RNN
+RNN/data
