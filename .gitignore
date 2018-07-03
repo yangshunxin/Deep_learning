@@ -119,3 +119,9 @@ CNN/model
 
 # RNN
 RNN/data
+
+#GAN
+GAN/data
+GAN/output
+GAN/output_sample
+GAN/dcgan/data
