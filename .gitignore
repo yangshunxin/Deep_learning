@@ -125,3 +125,7 @@ GAN/data
 GAN/output
 GAN/output_sample
 GAN/dcgan/data
+
+# project
+project/vehicle_number_recognition/font
+project/vehicle_number_recognition/plate
